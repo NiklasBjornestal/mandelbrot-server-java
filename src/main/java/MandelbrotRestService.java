@@ -27,14 +27,14 @@ public class MandelbrotRestService {
         for (int y = 0; y < y_size; y++) {
             for (int x = 0; x < x_size; x++) {
                 zx = zy = 0;
-                cX = x * (max_c_re - min_c_re) / x_size + min_c_re ;
-                cY = y * (max_c_im - min_c_im) / y_size + min_c_im ;
+                cX = x * (max_c_re - min_c_re) / x_size + min_c_re;
+                cY = y * (max_c_im - min_c_im) / y_size + min_c_im;
                 int iter = inf_n;
                 while (zx * zx + zy * zy < 4 && iter > 0) {
                     tmp = zx * zx - zy * zy + cX;
                     zy = 2.0 * zx * zy + cY;
                     zx = tmp;
-                    iter --;
+                    iter--;
                 }
                 image [x + y*x_size] = (byte)(iter % 256);
             }

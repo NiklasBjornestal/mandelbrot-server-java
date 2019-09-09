@@ -5,9 +5,9 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
-public class Main {
+class Main {
 
-    static HttpServer startServer(String address) {
+    private static HttpServer startServer(String address) {
         URI serverUri = UriBuilder.fromPath("http://"+address).build();
 
         ResourceConfig rc = ResourceConfig.forApplication(new Server());
@@ -15,13 +15,13 @@ public class Main {
         return GrizzlyHttpServerFactory.createHttpServer(serverUri, rc);
     }
 
-    static void printUsage() {
+    private static void printUsage() {
         System.out.println("Usage:");
         System.out.println(System.getProperty("sun.java.command") + " address:port");
     }
 
     public static void main(String[] args) {
-        System.out.println("Starting server...");
+        System.out.println("Starting server...\npress enter to terminate");
         if (args.length > 0) {
             HttpServer httpServer = startServer(args[0]);
             try {
