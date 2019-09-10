@@ -7,6 +7,12 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 class Main {
 
+    /**
+     * Start http server
+     *
+     * @param address to server in format server:port
+     * @return server
+     */
     private static HttpServer startServer(String address) {
         URI serverUri = UriBuilder.fromPath("http://"+address).build();
 
@@ -15,14 +21,20 @@ class Main {
         return GrizzlyHttpServerFactory.createHttpServer(serverUri, rc);
     }
 
+    /**
+     * Print usage
+     */
     private static void printUsage() {
         System.out.println("Usage:");
         System.out.println(System.getProperty("sun.java.command") + " address:port");
     }
 
+    /**
+     * @param args only accepts one argument, which should contain server:port
+     */
     public static void main(String[] args) {
         System.out.println("Starting server...\npress enter to terminate");
-        if (args.length > 0) {
+        if (args.length == 1) {
             HttpServer httpServer = startServer(args[0]);
             try {
                 System.in.read();

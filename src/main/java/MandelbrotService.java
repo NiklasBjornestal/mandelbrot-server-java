@@ -6,10 +6,24 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 @Path("/")
-public class MandelbrotRestService {
+public class MandelbrotService {
 
-
-
+    /**
+     * Add function for route
+     * /mandelbrot/{min_c_re}/{min_c_im}/{max_c_re}/{max_c_im}/{x}/{y}/{inf_n}
+     *
+     * Calculates and returns an array containing a gray scale 8bit mandelbrot fractal image
+     *
+     * @param min_c_re min real value
+     * @param min_c_im min imaginary value
+     * @param max_c_re max real value
+     * @param max_c_im max imaginary value
+     * @param inf_n Max number of iterations to calculate
+     * @param x_size x size in pixels
+     * @param y_size y size in pixels
+     * @param uriInfo info about current uri
+     * @return response containing calculated mandelbrot image (byte array)
+     */
     @GET
     @Path("mandelbrot/{min_c_re}/{min_c_im}/{max_c_re}/{max_c_im}/{x}/{y}/{inf_n}")
     public Response getSubImage(
@@ -42,11 +56,5 @@ public class MandelbrotRestService {
         System.out.println("Done");
         return Response.ok(image)
                 .build();
-    }
-
-    @GET
-    @Path("test")
-    public Response test() {
-        return Response.ok("Hello world").build();
     }
 }
